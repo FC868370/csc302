@@ -52,8 +52,7 @@ void got_packet(u_char *args, const struct pcap_pkthdr *header,
             return;
         case IPPROTO_UDP:
             printf("   Protocol: UDP\n");
-            struct udpheader *udp = (struct udpheader *)
-                        (packet + sizeof(struct ethheader) + sizeof(struct ipheader));
+            struct udpheader *udp = (struct udpheader *)(packet + sizeof(struct ethheader) + sizeof(struct ipheader));
             char *msg = malloc(udp->udp_ulen * sizeof(char));
             msg = packet +  sizeof(struct ethheader) + sizeof(struct ipheader) + sizeof(struct udpheader);
             printf(" Message: %s\n", msg);
